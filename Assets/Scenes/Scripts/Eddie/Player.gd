@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-var wheel_base = 50
+var wheel_base = 70
 
 var steering_angle = 8
 
@@ -18,6 +18,9 @@ var max_speed_reverse = 10
 
 var TOP_SPEED = 300
 
+func _ready():
+	rotation = 5
+
 func _physics_process(delta):
 	acc = Vector2.ZERO
 	get_input()
@@ -32,7 +35,7 @@ func apply_friction():
 	var friction_force = velocity * friction
 	var drag_force = velocity * velocity.length() * drag
 	if velocity.length() < 100:
-		friction_force *= 3
+		friction_force *= 2
 	acc += drag_force + friction_force
 
 func get_input():
@@ -45,10 +48,7 @@ func get_input():
 	if Input.is_action_pressed("ui_up"):
 		acc = transform.x * f_acc
 	if Input.is_action_pressed("ui_down"):
-		if velocity == Vector2.ZERO:
-			pass
-		else:
-			acc = transform.x * braking
+		acc = transform.x * braking
 
 func calculate_steering(delta):
 	var rear_wheel = position - transform.x * wheel_base / 2.0
@@ -60,5 +60,5 @@ func calculate_steering(delta):
 	if d > 0:
 		velocity = new_heading * velocity.length()
 	if d < 0:
-		velocity = -new_heading * min(velocity.length(), max_speed_reverse)
+		velocity = - new_heading * min(velocity.length(), max_speed_reverse)
 	rotation = new_heading.angle()
