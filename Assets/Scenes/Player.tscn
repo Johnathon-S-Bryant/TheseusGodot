@@ -4,14 +4,13 @@
 [ext_resource path="res://Assets/Scenes/Scripts/Eddie/Ram.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Images/ForegroundObscure.png" type="Texture" id=3]
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 61.9176
 height = 344.235
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=2]
 
-[sub_resource type="Animation" id=2]
-resource_name = "PlayerShip"
+[sub_resource type="Animation" id=3]
 loop = true
 step = 0.0833333
 tracks/0/type = "value"
@@ -39,7 +38,7 @@ frame = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -15.1557, 0.15802 )
 rotation = 1.5708
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -50,6 +49,7 @@ limit_right = 3840
 limit_bottom = 2160
 
 [node name="Sprite" type="Sprite" parent="Camera2D"]
+visible = false
 z_index = 10
 texture = ExtResource( 3 )
 
@@ -62,7 +62,7 @@ rotation = 1.5708
 [node name="Ram" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
-script = SubResource( 1 )
+script = SubResource( 2 )
 
 [node name="Timer" type="Timer" parent="Ram"]
 
@@ -71,7 +71,7 @@ polygon = PoolVector2Array( 247.128, 0.13382, 231.133, -17.2643, 199.143, -43.64
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "PlayerShip"
-anims/PlayerShip = SubResource( 2 )
+anims/PlayerShip = SubResource( 3 )
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
 [connection signal="timeout" from="Ram/Timer" to="." method="_on_Timer_timeout"]
