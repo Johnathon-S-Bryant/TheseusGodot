@@ -14,6 +14,7 @@ func _ready():
 func _physics_process(delta):
 	if active == true:
 		if Input.is_action_just_pressed("ui_select"):
+			print("Ramming speed")
 			duration.start()
 			coll.disabled = false
 			f_acc = 2000
@@ -34,3 +35,9 @@ func _on_Cooldown_timeout():
 	duration.set_wait_time(0.5)
 	cooldown.stop()
 	active = true
+
+
+
+func _on_HitBox_area_entered(area):
+	health -= 5
+	print(health)

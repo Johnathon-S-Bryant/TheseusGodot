@@ -66,7 +66,3 @@ func calculate_steering(delta):
 		velocity = - new_heading * min(velocity.length(), max_speed_reverse)
 	# Sets rotation of the ship
 	rotation = new_heading.angle()
-
-func _on_HitBox_area_entered(area):
-	health -= 5
-	print(health)

@@ -19,6 +19,7 @@ var acc = 300
 var speed = 150
 var player = null
 var ram_ready = true
+var ram_active = false
 
 func _ready():
 	ram_head.disabled = true
@@ -45,10 +46,11 @@ func _on_Area2D_area_entered(body):
 	health -= 5
 
 func _on_Ram_body_entered(body):
-	if ram_ready == true:
-		print("Ramming speed")
+	if ram_ready == true && ram_active == false:
 		speed *= 4
 		ram_head.disabled = false
+		print(ram_head.disabled)
+		ram_active = true
 		duration.start()
 
 
@@ -56,9 +58,13 @@ func _on_duration_timeout():
 	speed = 150
 	duration.stop()
 	cooldown.set_wait_time(5)
+	ram_ready = false
+	ram_active = false
 	ram_head.disabled = true
+	print(ram_head.disabled)
 
 
 func _on_cooldown_timeout():
-	cooldown.stop()
 	duration.set_wait_time(1)
+	cooldown.stop()
+	ram_ready = true
