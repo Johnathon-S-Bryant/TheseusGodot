@@ -16,14 +16,6 @@ texture = ExtResource( 3 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
 
-[node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
-current = true
-zoom = Vector2( 2, 2 )
-limit_left = -3840
-limit_top = -2160
-limit_right = 3840
-limit_bottom = 2160
-
 [node name="KinematicBody2D2" type="KinematicBody2D" parent="."]
 collision_layer = 3
 
