@@ -27,7 +27,7 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity)
 
 func apply_friction():
-	if velocity.length() < 5:
+	if velocity.length() < 4.9:
 		velocity = Vector2.ZERO
 	var friction_force = velocity * friction
 	var drag_force = velocity * velocity.length() * drag
