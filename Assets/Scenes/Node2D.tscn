@@ -10,3 +10,8 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 1 )]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( -3918.62, -2250.01, -3938.8, 2344.65, 3979.08, 2311.01, 3979.08, -2303.83, -3696.62, -2310.55, -3763.89, -1994.38, 3703.27, -1974.19, 3710, 1967.93, -3662.98, 2021.74, -3736.98, -2189.46 )

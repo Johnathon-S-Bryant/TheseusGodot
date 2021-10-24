@@ -17,11 +17,14 @@ var max_speed_reverse = 50
 
 var TOP_SPEED = 300 # Max Speed
 
+var push = Vector2(500,0)
+
 func _physics_process(delta):
 	acc = Vector2.ZERO
 	get_input() # Gets inputs
 	apply_friction() # Applies stopping forces
 	calculate_steering(delta) # Calculates turning angle
+	boundary()
 	# This is where the velocity of the ship is actually calculated
 	velocity += acc * delta
 	velocity = move_and_slide(velocity)
@@ -66,3 +69,7 @@ func calculate_steering(delta):
 		velocity = - new_heading * min(velocity.length(), max_speed_reverse)
 	# Sets rotation of the ship
 	rotation = new_heading.angle()
+
+func boundary():
+	var x = position.x
+	var y = position.y
