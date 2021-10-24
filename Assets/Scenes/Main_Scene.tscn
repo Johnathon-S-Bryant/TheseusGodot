@@ -2,22 +2,47 @@
 
 [ext_resource path="res://Assets/Images/BackgroundParchment.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Images/ForegroundObscure.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Scenes/Enemy.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Background" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="ForegroundObscure" type="Sprite" parent="."]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 3 )
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( -1175.81, -115.935 )
 
-[node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( -26.1626, 0.00012207 )
+current = true
+zoom = Vector2( 2, 2 )
+limit_left = -3840
+limit_top = -2160
+limit_right = 3840
+limit_bottom = 2160
 
-[node name="KinematicBody2D2" type="KinematicBody2D" parent="."]
+[node name="invis wall" type="KinematicBody2D" parent="."]
+position = Vector2( -8.97974, 0 )
 collision_layer = 3
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KinematicBody2D2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="invis wall"]
 polygon = PoolVector2Array( -3844.68, -2158.36, -3844.68, 2169.85, -4383.46, 2178.83, -4374.48, -2409.79, 4407.66, -2418.77, 4389.71, 2466.18, -4446.32, 2654.76, -3745.9, 2169.85, 3841.94, 2178.83, 3868.88, -2194.28 )
+
+[node name="Enemy" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1600.6, 139.168 )
+rotation = 3.14159
+angle = 1.4
+
+[node name="Enemy2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 210.041, 1631.33 )
+rotation = 3.14159
+angle = 1.4
+
+[node name="Enemy3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 406.879, -1232.35 )
+rotation = 3.14159
+angle = 1.4

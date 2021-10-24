@@ -3,7 +3,7 @@ extends KinematicBody2D
 var health = 50
 
 var wheel_base = 70
-var steering_angle = 8
+var steering_angle = 10
 var velocity = Vector2.ZERO
 var steer_angle
 # Acceleration variables
@@ -17,14 +17,11 @@ var max_speed_reverse = 50
 
 var TOP_SPEED = 300 # Max Speed
 
-var push = Vector2(500,0)
-
 func _physics_process(delta):
 	acc = Vector2.ZERO
 	get_input() # Gets inputs
 	apply_friction() # Applies stopping forces
 	calculate_steering(delta) # Calculates turning angle
-	boundary()
 	# This is where the velocity of the ship is actually calculated
 	velocity += acc * delta
 	velocity = move_and_slide(velocity)
@@ -70,6 +67,6 @@ func calculate_steering(delta):
 	# Sets rotation of the ship
 	rotation = new_heading.angle()
 
-func boundary():
-	var x = position.x
-	var y = position.y
+func _on_HitBox_area_entered(area):
+	health -= 5
+	print(health)
